@@ -1,6 +1,6 @@
 require "bundler/setup"
 require "activeresource"
-require "activeresource/statsd"
+require "active_resource/statsd"
 require 'webmock/rspec'
 require 'pry-byebug'
 

@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "activeresource/statsd/version"
+require "active_resource/statsd/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "activeresource-statsd"
-  spec.version       = Activeresource::Statsd::VERSION
+  spec.version       = ActiveResource::Statsd::VERSION
   spec.authors       = ["Simon Mathieu"]
   spec.email         = ["simon.mathieu@shopify.com"]
 

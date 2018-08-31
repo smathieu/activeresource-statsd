@@ -1,6 +1,6 @@
-require "activeresource/statsd/version"
+require "active_resource/statsd/version"
 
-module Activeresource
+module ActiveResource
   module Statsd
     GUID_REGEXP = /\h{8}-\h{4}-\h{4}-\h{4}-\h{12}/
     ID_REGEXP = %r{/\d+(/|$|\.)}

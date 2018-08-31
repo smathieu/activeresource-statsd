@@ -1,4 +1,4 @@
-# Activeresource::Statsd
+# ActiveResource::Statsd
 
 Pushes metrics to a Statsd host for every ActiveResource request.
 
@@ -17,7 +17,7 @@ And then execute:
 Then initialize with:
 
 ```ruby
-  Activeresource::Statsd.init!(client: ::StatsD)
+  ActiveResource::Statsd.init!(client: ::StatsD)
 ```
 
 ## Development

@@ -2,9 +2,9 @@ class Person < ActiveResource::Base
   self.site = "http://api.people.com"
 end
 
-RSpec.describe Activeresource::Statsd do
+RSpec.describe ActiveResource::Statsd do
   it "has a version number" do
-    expect(Activeresource::Statsd::VERSION).not_to be nil
+    expect(ActiveResource::Statsd::VERSION).not_to be nil
   end
 
   describe "#init!" do
