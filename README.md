@@ -17,7 +17,7 @@ And then execute:
 Then initialize with:
 
 ```ruby
-  Activeresource::Statsd.init!(client: ::Statsd)
+  Activeresource::Statsd.init!(client: ::StatsD)
 ```
 
 ## Development
