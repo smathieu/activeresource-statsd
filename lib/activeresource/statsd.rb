@@ -6,6 +6,8 @@ module Activeresource
     ID_REGEXP = %r{/\d+(/|$|\.)}
 
     def self.init!(client: )
+      raise 'Already initialized' if @subscriber
+
       @subscriber = ActiveSupport::Notifications.subscribe('request.active_resource') do |name, start, finish, id, payload|
         #{:method=>:post, :request_uri=>"http://api.people.com:80/people.json", :result=>#<Net::HTTPOK 200  readbody=true>}
 
@@ -29,6 +31,7 @@ module Activeresource
     end
 
     def self.reset!
+      return unless @subscriber
       ActiveSupport::Notifications.unsubscribe(@subscriber)
       @subscriber = nil
     end

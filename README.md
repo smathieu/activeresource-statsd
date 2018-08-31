@@ -1,8 +1,6 @@
 # Activeresource::Statsd
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/activeresource/statsd`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Pushes metrics to a Statsd host for every ActiveResource request.
 
 ## Installation
 
@@ -16,13 +14,11 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Then initialize with:
 
-    $ gem install activeresource-statsd
-
-## Usage
-
-TODO: Write usage instructions here
+```ruby
+  Activeresource::Statsd.init!(client: ::Statsd)
+```
 
 ## Development
 
