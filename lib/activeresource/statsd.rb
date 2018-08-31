@@ -9,22 +9,31 @@ module Activeresource
       raise 'Already initialized' if @subscriber
 
       @subscriber = ActiveSupport::Notifications.subscribe('request.active_resource') do |name, start, finish, id, payload|
-        #{:method=>:post, :request_uri=>"http://api.people.com:80/people.json", :result=>#<Net::HTTPOK 200  readbody=true>}
-
-        method, uri, result = payload.values_at(:method, :request_uri, :result)
+        method, uri, result, exception = payload.values_at(:method, :request_uri, :result, :exception)
         uri = URI(uri)
         time = finish - start
 
-        code = result.code
-        type = "#{code.to_s[0]}xx"
-
-
         tags = [
-          "code:#{code}",
-          "response_type:#{type}",
           "path:#{path_for(uri)}", 
           "method:#{method}",
         ]
+
+        if result
+          code = result.code
+          type = "#{code.to_s[0]}xx"
+
+          tags += [
+            "code:#{code}",
+            "response_type:#{type}",
+          ]
+        end
+
+        if exception
+          exception_klass = exception.first
+          type = payload[:exception].first.parameterize
+
+          tags += ["error:#{type}"]
+        end
 
         client.measure("request.activeresource", time, tags: tags)
       end
@@ -42,7 +51,7 @@ module Activeresource
       # Remove first "/"
       path = path[1..-1]
       path = sub_ids(path)
-      path.tr("/", "-")
+      path.parameterize
     end
 
     def self.sub_ids(path)
